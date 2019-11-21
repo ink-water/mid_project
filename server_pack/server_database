@@ -1,0 +1,72 @@
+SET NAMES utf8;
+DROP DATABASE IF EXISTS `game`;
+CREATE DATABASE `game` CHARSET=utf8;
+USE `game`;
+
+--
+-- 创建用户信息表
+--
+
+set @a="这个人很懒，什么也没留下";
+
+CREATE TABLE `user_info`(
+    `uid`   INT PRIMARY KEY AUTO_INCREMENT,
+    `sid`   INT INDEX DEFAULT "无",
+    `img`   MEDIUMBLOB,
+    `name` VARCHAR(32) UNIQUE,
+    `pwd`   VARCHAR(128) NOT NULL,
+    `sex`   ENUM("男","女","未填") DEFAULT "未填",
+    `city`  VARCHAR(10) DEFAULT "未填",
+    `exp`   TINYINT DEFAULT 0,
+    `level` TINYINT DEFAULT 0,
+    `sign`  VARCHAR(64) DEFAULT @a,
+    `click` INT DEFAULT 0
+)AUTO_INCREMENT=10000;
+
+--
+-- 好友关系表,私聊内容
+--
+
+CREATE TABLE `friend`(
+    `id`    INT PRIMARY KEY AUTO_INCREMENT,
+    `id1`   INT NOT NULL,
+    `id2`   INT NOT NULL,
+    `content`   VARCHAR(64),
+    `record_time`   DATATIME DEFAULT now()
+);
+
+--
+-- 公会信息表
+--
+
+set @b="什么也没有";
+
+CREATE TABLE `society`(
+    `sid`   INT PRIMARY KEY AUTO_INCREMENT,
+    `img`   MEDIUMBLOB,
+    `sname` VARCHAR(16) UNIQUE,
+    `id`    INT,
+    `ssign` VARCHAR(64) DEFAULT @b,
+    `num`   SMALLINT DEFAULT 0,
+    `start_up`  DATATIME DEFAULT now()
+)AUTO_INCREMENT=100000;
+
+--
+-- 排行榜(视图)
+--
+
+CREATE VIEW `charts` as SELECT `img`,`name`,`level` from `user_info` ORDER BY `level` DESC,`exp` DESC LIMIT 150;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
