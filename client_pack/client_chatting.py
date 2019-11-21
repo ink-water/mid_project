@@ -53,6 +53,14 @@ class ClientChatting:
         """
         pass
 
+    def delete_friend(self, name):
+        """
+            删除好友
+        :param name:
+        :return:
+        """
+        pass
+
     def enter_society(self, sid=0):
         """
              根据公会id申请加入公会
@@ -74,6 +82,13 @@ class ClientChatting:
     def quit_society(self):
         """
             退出公会
+        :return:
+        """
+        pass
+
+    def click_other(self, name):
+        """
+            给某人点赞
         :return:
         """
         pass

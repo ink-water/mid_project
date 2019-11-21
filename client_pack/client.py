@@ -99,6 +99,12 @@ class Client:
         """
         pass
 
+    def submit_bug(self):
+        """
+            提交建议、bug
+        :return:
+        """
+
 
 if __name__ == '__main__':
     client = Client()
