@@ -1,15 +1,13 @@
 from socket import *
-from pro_wzq.client_pack.client_chatting import ClientChatting
-from pro_wzq.client_pack.client_chess import ClientChess
-from pro_wzq.client_pack.client_settings import ClientSettings
+
+from client_chatting import ClientChatting
+from client_settings import *
 
 
 class Client:
     """实现客户端基本的登录注册功能"""
 
     def __init__(self):
-        self.settings = ClientSettings()
-
         # 该客户端的昵称
         self.name = None
 
@@ -19,7 +17,7 @@ class Client:
 
         # 创建套接字
         self.sock_fd = socket()
-        self.sock_fd.connect(self.settings.server_address)
+        self.sock_fd.connect(server_address)
 
     def name_is_legal(self, name):
         """
